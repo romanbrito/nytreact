@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
+import methodOverride from 'method-override';
 
 // Require click schema
 import Click from './models/article';
@@ -16,6 +17,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride("_method"));
 
 // public Directory
 app.use(express.static('./public'));
@@ -56,11 +60,9 @@ db.once('open', () => {
 });
 
 // Routes
-
 // Main "/" Route. This will redirect the user to our rendered React application
-app.get("/", (req, res) => {
-    res.render("index");
-});
+app.use(require('./routes/main'));
+app.use(require('./routes/saved'));
 
 // This is the route we will send GET requests to retrieve our most recent click data.
 // We will call this route the moment our page gets rendered
