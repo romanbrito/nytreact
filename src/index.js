@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Main from './components/Main';
+
 ReactDOM.render(
-//  <App />,
-<p>Hello World! Learn React!!</p>,
+  <Main />,
   document.getElementById('root')
 );
 
