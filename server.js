@@ -61,8 +61,8 @@ db.once('open', () => {
 
 // Routes
 // Main "/" Route. This will redirect the user to our rendered React application
-app.use(require('./routes/main'));
 app.use(require('./routes/saved'));
+app.use(require('./routes/main'));
 
 // This is the route we will send GET requests to retrieve our most recent click data.
 // We will call this route the moment our page gets rendered
