@@ -29,7 +29,8 @@ let helper = {
     return axios.get(queryURL).then((response) => {
       if (response) {
       console.log("response " + response);
-      return response;
+      let responseArray = response.data.response.docs;
+      return responseArray;
       }
       // If we don't get any results, return an empty string
       return '';

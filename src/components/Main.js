@@ -8,7 +8,7 @@ import helpers from '../utils/helpers';
 class Main extends Component {
 
   state = {
-    searchTerm: '',
+    searchTerm: {},
     results: [], //
     savedArticles: []
   };
@@ -25,8 +25,8 @@ class Main extends Component {
       // Run query for the article
       helpers.runQuery(this.state.searchTerm).then((data) => {
         console.log('Articles');
-        console.log(data.data.response.docs);
-        //this.setState({results: data.data.response.docs});
+        console.log(data);
+        //this.setState({results: data});
       })
     //}
 
