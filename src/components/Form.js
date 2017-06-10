@@ -2,19 +2,12 @@ import React, {Component} from 'react';
 
 class Form extends Component {
 
-  // state ={
-  //   topic: '', // Object composed of topic start and end Date
-  // };
   state ={
     topic: '',
     startYear: '',
     endYear: ''
   };
 
-  // This function will respond to the user input
-  // handleChange = (event) => {
-  //   this.setState({ term: event.target.value });
-  // };
   handleChange = (key) => {
     return (event) => {
       let state = {};
@@ -58,7 +51,7 @@ class Form extends Component {
           />
 
           <h4>
-            <strong>Start Year</strong>
+            <strong>Start Date</strong>
           </h4>
           <input
             value={this.state.startYear}
@@ -66,11 +59,11 @@ class Form extends Component {
             className="form-control"
             id="start-Year"
             onChange={this.handleChange('startYear')}
-            required
+            required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
           />
 
           <h4>
-            <strong>End Year</strong>
+            <strong>End Date</strong>
           </h4>
           <input
             value={this.state.endYear}
@@ -78,7 +71,7 @@ class Form extends Component {
             className="form-control"
             id="end-Year"
             onChange={this.handleChange('endYear')}
-            required
+            required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
           />
         </div>
         <div>

@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 
 import Form from './Form';
 
+import helpers from '../utils/helpers';
+
+
 class Main extends Component {
 
   state = {
     searchTerm: '',
-    results: [],
+    results: [], //
     savedArticles: []
   };
 
@@ -17,8 +20,18 @@ class Main extends Component {
 
   // If the component changes (i.e. if a search is entered)...
   componentDidUpdate(prevProps, prevState) {
-    console.log('search term ' + this.state.searchTerm.topic);
-    //...
+    //if (prevState.searchTerm !== this.state.searchTerm) {
+      console.log('Updated');
+      // Run query for the article
+      helpers.runQuery(this.state.searchTerm).then((data) => {
+        console.log('Articles');
+        console.log(data.data.response.docs);
+        //this.setState({results: data.data.response.docs});
+      })
+    //}
+
+    // console.log('search term ' + this.state.searchTerm.topic);
+
   }
 
   // This function allows childrens to update the parent.
