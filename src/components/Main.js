@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Form from './Form';
+import Results from './Results';
 
 import helpers from '../utils/helpers';
 
@@ -20,15 +21,17 @@ class Main extends Component {
 
   // If the component changes (i.e. if a search is entered)...
   componentDidUpdate(prevProps, prevState) {
-    //if (prevState.searchTerm !== this.state.searchTerm) {
+    if (prevState.searchTerm !== this.state.searchTerm) {
       console.log('Updated');
+
       // Run query for the article
       helpers.runQuery(this.state.searchTerm).then((data) => {
         console.log('Articles');
         console.log(data);
-        //this.setState({results: data});
+        let artArray = data;
+        this.setState({results: data});
       })
-    //}
+    }
 
     // console.log('search term ' + this.state.searchTerm.topic);
 
@@ -57,6 +60,11 @@ class Main extends Component {
               <div className="panel-body text-center">
                {/*Form component*/}
                 <Form setTerm={this.setTerm}/>
+
+              </div>
+              <div className="col-md-6">
+
+                <Results articles={this.state.results}/>
 
               </div>
             </div>

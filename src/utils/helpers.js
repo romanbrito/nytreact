@@ -13,10 +13,6 @@ let helper = {
     let endYear = articles.endYear.replace(/-/g, "");
 
     // Figure out the geolocation
-    //const queryURLBase = "https://api.nytimes.com/svc/search/v2/" +
-      //"articlesearch.json?api-key=" +
-      //authKey + "&q=";
-
 
     const queryURL = "https://api.nytimes.com/svc/search/v2/" +
       "articlesearch.json?api-key=" +
