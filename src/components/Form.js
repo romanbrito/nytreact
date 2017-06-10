@@ -2,13 +2,25 @@ import React, {Component} from 'react';
 
 class Form extends Component {
 
+  // state ={
+  //   topic: '', // Object composed of topic start and end Date
+  // };
   state ={
-    term: '' // Object composed of topic start and end Date
+    topic: '',
+    startYear: '',
+    endYear: ''
   };
 
   // This function will respond to the user input
-  handleChange = (event) => {
-    this.setState({ term: event.target.value });
+  // handleChange = (event) => {
+  //   this.setState({ term: event.target.value });
+  // };
+  handleChange = (key) => {
+    return (event) => {
+      let state = {};
+      state[key] = event.target.value;
+      this.setState(state);
+    }
   };
 
 
@@ -19,8 +31,8 @@ class Form extends Component {
     event.preventDefault();
 
     // Set the parent to have the search term
-    this.props.setTerm(this.state.term);
-    this.setState({ term: '' });
+    this.props.setTerm(this.state);
+    this.setState({ state: {}});
   };
 
 
@@ -37,11 +49,11 @@ class Form extends Component {
            Also note how each has an onChange event associated with our handleChange event.
            */}
           <input
-            value={this.state.term}
+            value={this.state.topic}
             type="text"
             className="form-control"
             id="topic"
-            onChange={this.handleChange}
+            onChange={this.handleChange('topic')}
             required
           />
 
@@ -49,24 +61,24 @@ class Form extends Component {
             <strong>Start Year</strong>
           </h4>
           <input
-            // value={this.state.startYear}
+            value={this.state.startYear}
             type="date"
             className="form-control"
             id="start-Year"
-            // onChange={this.handleChange}
-            // required
+            onChange={this.handleChange('startYear')}
+            required
           />
 
           <h4>
             <strong>End Year</strong>
           </h4>
           <input
-            // value={this.state.endYear}
+            value={this.state.endYear}
             type="date"
             className="form-control"
             id="end-Year"
-            // onChange={this.handleChange}
-            // required
+            onChange={this.handleChange('endYear')}
+            required
           />
         </div>
         <div>

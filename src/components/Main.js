@@ -17,7 +17,7 @@ class Main extends Component {
 
   // If the component changes (i.e. if a search is entered)...
   componentDidUpdate(prevProps, prevState) {
-    console.log('search term ' + this.state.searchTerm);
+    console.log('search term ' + this.state.searchTerm.topic);
     //...
   }
 
