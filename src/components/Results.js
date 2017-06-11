@@ -37,7 +37,17 @@ class Results extends Component {
       <ul className="list-group">
         {this.state.results.map(item => (
           <li key={item._id} className="list-group-item">
-            {item.abstract}
+            {item.web_url}
+            <hr/>
+            {item.headline.main}
+            <button
+              className="btn btn-primary"
+              type="text"
+            >
+              Save
+            </button>
+            <hr/>
+            {item.pub_date}
           </li>
         ))}
       </ul>

@@ -4,8 +4,8 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import methodOverride from 'method-override';
 
-// Require click schema
-import Click from './models/article';
+// Require Article schema
+import Article from './models/article';
 
 const app = express();
 
@@ -66,40 +66,40 @@ app.use(require('./routes/main'));
 
 // This is the route we will send GET requests to retrieve our most recent click data.
 // We will call this route the moment our page gets rendered
-app.get('/api', (req,res) => {
-  Click.find({}).exec((err, doc)=>{
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(doc);
-    }
-  });
-});
+// app.get('/api', (req,res) => {
+//   Click.find({}).exec((err, doc)=>{
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.send(doc);
+//     }
+//   });
+// });
 
 // This is the route we will send POST requests to save each click.
 // We will call this route the moment the "click" or "reset" button is pressed.
 
-app.post('/api', (req, res) => {
-  let clickID = req.body.clickID;
-  let clicks = parseInt(req.body.clicks);
+// app.post('/api', (req, res) => {
+//   let clickID = req.body.clickID;
+//   let clicks = parseInt(req.body.clicks);
 
     // Note how this route utilizes the findOneAndUpdate function to update the clickCount
     // { upsert: true } is an optional object we can pass into the findOneAndUpdate method
     // If included, Mongoose will create a new document matching the description if one is not found
-  Click.findOneAndUpdate({
-    clickID: clickID
-  }, {
-    $set: {
-      clicks: clicks
-    }
-  }, {upsert: true}).exec((err)=>{
-    if (err) {
-      console.log(err);
-    }else {
-      res.send('Updated Click Count!');
-    }
-  });
-});
+//   Click.findOneAndUpdate({
+//     clickID: clickID
+//   }, {
+//     $set: {
+//       clicks: clicks
+//     }
+//   }, {upsert: true}).exec((err)=>{
+//     if (err) {
+//       console.log(err);
+//     }else {
+//       res.send('Updated Click Count!');
+//     }
+//   });
+// });
 
 app.listen(PORT, () =>{
   console.log('App listening on PORT: ' + PORT);
