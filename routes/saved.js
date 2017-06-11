@@ -4,11 +4,17 @@ var router = express.Router();
 // Require Article schema
 import Article from '../models/article';
 
-// query MongoDB
-router.get("/api", function (req, res) {
-  res.send("api");
+// This is the route we will send GET requests to retrieve our most recent saved articles
+// We will call this route the moment our page gets rendered
+router.get('/api', (req,res) => {
+  Article.find({}).exec((err, doc)=>{
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(doc);
+    }
+  });
 });
-
 // save to MongoDB
 router.post("/api", function (req, res) {
 

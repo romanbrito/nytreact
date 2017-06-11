@@ -2,14 +2,28 @@ import React, {Component} from 'react';
 import {Link, Route} from 'react-router-dom';
 
 import Results from './Results';
+import helpers from '../utils/helpers';
 
 class Form extends Component {
 
   state = {
     topic: '',
     startYear: '',
-    endYear: ''
+    endYear: '',
+    saved: []
   };
+
+  // The moment the page renders get the saved articles
+  componentDidMount() {
+    // Get saved articles.
+    helpers.getSaved().then((response) => {
+      console.log(response);
+      if (response !== this.state.saved) {
+        console.log('saved', response.data);
+        this.setState({saved: response.data});
+      }
+    }); //.bind(this)
+  }
 
   handleChange = (key) => {
     return (event) => {
@@ -103,6 +117,37 @@ class Form extends Component {
           searchTerm={this.state}
           />
         )}/>
+
+
+        {/*Show saved articles*/}
+
+        <div className="row">
+
+          <ul className="list-group">
+            {this.state.saved.map(item => (
+              <li key={item._id} className="list-group-item">
+                {item.url}
+                <hr/>
+                {item.title}
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  // onClick={() => {this.saveArticle(item)}}
+                >
+                  delete
+                </button>
+                <hr/>
+                {item.date}
+              </li>
+            ))}
+          </ul>
+
+
+        </div>
+
+
+
+
       </div>
     );
   }

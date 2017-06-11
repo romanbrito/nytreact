@@ -32,7 +32,7 @@ let helper = {
       return '';
     });
   },
-  getHistory(){
+  getSaved(){
     return axios.get('/api');
   },
   postArticle(data){
