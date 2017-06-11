@@ -26,9 +26,15 @@ class Form extends Component {
     // clicking the button
     event.preventDefault();
 
+    console.log('submit');
+    console.log(this.state);
+
+    //this.setState(this.state);
+
     // Set parent to have the search term
     // this.props.setTerm(this.state);
     // this.setState({state: {}});
+
   };
 
 
@@ -79,27 +85,29 @@ class Form extends Component {
           />
         </div>
         <div>
+          <Link to="/results">
             <button
               className="btn btn-primary"
               type="submit"
             >
               Submit
             </button>
+          </Link>
 
         </div>
       </form>
         {/*Results component*/}
-        {/*<Route path="/results" component={Results}/>*/}
-        <Results searchTerm={this.state}/>
 
+        <Route path="/results" render={props => (
+          <Results
+          searchTerm={this.state}
+          />
+        )}/>
       </div>
     );
   }
 }
 
-
-
 export default Form;
-
 
 

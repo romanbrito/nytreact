@@ -5,32 +5,37 @@ import helpers from '../utils/helpers';
 class Results extends Component {
 
   state = {
-    //searchTerm: {},
-    results: []
+    results: [],
+    searchTerm: {}
   };
 
 
   // If the component changes (i.e. if a search is entered)...
-  componentDidUpdate() {
+  componentDidMount() {
     //if (prevState.searchTerm !== this.state.searchTerm) {
-    console.log('Updated');
-    console.log(this.props.searchTerm);
+      console.log('Updated');
+      console.log(this.props.searchTerm);
 
-    var {topic, startYear, endYear} = this.props.searchTerm;
+      //var {topic, startYear, endYear} = this.props.searchTerm;
 
-    if (topic && startYear && endYear) {
+
       // Run query for the article
       helpers.runQuery(this.props.searchTerm).then((data) => {
-        console.log('Articles');
-        console.log(data);
-        let artArray = data;
-        this.setState({results: data});
+        if (data !== this.state.results) {
+          this.setState({results: data});
+          console.log('Articles');
+          console.log(this.state.results);
+        }
       })
-    }
+    //}
   }
 
+
+
   render() {
-    return (<h2 className="text-center">This is Results</h2>);
+    return (
+      <h1>this is results</h1>
+    );
   };
 
 }
