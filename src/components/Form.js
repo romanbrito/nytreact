@@ -42,13 +42,12 @@ class Form extends Component {
 
     console.log('submit');
     console.log(this.state);
+  };
 
-    //this.setState(this.state);
-
-    // Set parent to have the search term
-    // this.props.setTerm(this.state);
-    // this.setState({state: {}});
-
+  // delete articles
+  deleteArticle = (articleID)=>{
+    console.log(articleID);
+    helpers.deleteArticle(articleID);
   };
 
 
@@ -132,7 +131,7 @@ class Form extends Component {
                 <button
                   className="btn btn-danger"
                   type="button"
-                  // onClick={() => {this.saveArticle(item)}}
+                  onClick={() => {this.deleteArticle(item._id)}}
                 >
                   delete
                 </button>

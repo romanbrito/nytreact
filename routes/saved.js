@@ -1,6 +1,10 @@
 var express = require("express");
 var router = express.Router();
 
+import methodOverride from 'method-override';
+// override with POST having ?_method=DELETE
+router.use(methodOverride("_method"));
+
 // Require Article schema
 import Article from '../models/article';
 
@@ -17,6 +21,8 @@ router.get('/api', (req,res) => {
 });
 // save to MongoDB
 router.post("/api", function (req, res) {
+
+  console.log("post route");
 
   var result = {};
   result.title = req.body.headline.main;
@@ -36,8 +42,9 @@ router.post("/api", function (req, res) {
 });
 
 // delete database
-router.post("/api", function (req, res) {
-  res.render("index");
+router.delete("/api", function (req, res) {
+  console.log("delete route yes!!!");
+  Article.findByIdAndRemove(req.body.articleID);
 });
 
 module.exports = router;
