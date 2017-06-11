@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
+import {Link, Route} from 'react-router-dom';
+
+import Results from './Results';
 
 class Form extends Component {
 
-  state ={
+  state = {
     topic: '',
     startYear: '',
     endYear: ''
   };
 
   handleChange = (key) => {
-    return (event) => {
+    return (gitevent) => {
       let state = {};
       state[key] = event.target.value;
       this.setState(state);
@@ -23,14 +26,15 @@ class Form extends Component {
     // clicking the button
     event.preventDefault();
 
-    // Set the parent to have the search term
-    this.props.setTerm(this.state);
-    this.setState({ state: {}});
+    // Set parent to have the search term
+    // this.props.setTerm(this.state);
+    // this.setState({state: {}});
   };
 
 
   render() {
     return (
+      <div className="container">
       <form onSubmit={this.handleSubmit}>
         <div className="form-group">
           <h4 className="">
@@ -75,16 +79,27 @@ class Form extends Component {
           />
         </div>
         <div>
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
-            Submit
-          </button>
+            <button
+              className="btn btn-primary"
+              type="submit"
+            >
+              Submit
+            </button>
+
         </div>
       </form>
+        {/*Results component*/}
+        {/*<Route path="/results" component={Results}/>*/}
+        <Results searchTerm={this.state}/>
+
+      </div>
     );
   }
 }
 
+
+
 export default Form;
+
+
+
