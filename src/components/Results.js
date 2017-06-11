@@ -34,7 +34,13 @@ class Results extends Component {
 
   render() {
     return (
-      <h1>this is results</h1>
+      <ul className="list-group">
+        {this.state.results.map(item => (
+          <li key={item._id} className="list-group-item">
+            {item.abstract}
+          </li>
+        ))}
+      </ul>
     );
   };
 
