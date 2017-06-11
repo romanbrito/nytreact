@@ -12,7 +12,7 @@ class Form extends Component {
   };
 
   handleChange = (key) => {
-    return (gitevent) => {
+    return (event) => {
       let state = {};
       state[key] = event.target.value;
       this.setState(state);
