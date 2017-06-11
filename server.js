@@ -4,9 +4,6 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import methodOverride from 'method-override';
 
-// Require Article schema
-import Article from './models/article';
-
 const app = express();
 
 const PORT = process.env.PORT || 3000;

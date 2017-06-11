@@ -40,8 +40,10 @@ class Results extends Component {
     //}
   }
 
+  // save articles
   saveArticle = (info)=>{
     console.log(info);
+    helpers.postArticle(info);
   };
 
   render() {
