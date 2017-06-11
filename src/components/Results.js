@@ -6,9 +6,19 @@ class Results extends Component {
 
   state = {
     results: [],
-    searchTerm: {}
+    searchTerm: {},
+    article: {}
   };
 
+  // componentDidUpdate() {
+  //   helpers.postArticle(this.state.article)
+  //     .then(() => {
+  //     console.log("posted to mongo");
+  //   })
+  // }
+
+  // Whenever the button is clicked we'll use setState to add to the clickCounter
+  // Note the syntax for setting the state
 
   // If the component changes (i.e. if a search is entered)...
   componentDidMount() {
@@ -30,7 +40,9 @@ class Results extends Component {
     //}
   }
 
-
+  saveArticle = (info)=>{
+    console.log(info);
+  };
 
   render() {
     return (
@@ -42,7 +54,8 @@ class Results extends Component {
             {item.headline.main}
             <button
               className="btn btn-primary"
-              type="text"
+              type="button"
+              onClick={() => {this.saveArticle(item)}}
             >
               Save
             </button>

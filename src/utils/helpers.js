@@ -35,8 +35,8 @@ let helper = {
   getHistory(){
     return axios.get('/api');
   },
-  postHistory(location){
-    return axios.post('/api', {location: location});
+  postArticle(data){
+    return axios.post('/api', data);
   }
 };
 

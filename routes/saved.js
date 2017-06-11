@@ -2,17 +2,26 @@ var express = require("express");
 var router = express.Router();
 
 // query MongoDB
-router.get("/api/saved", function (req, res) {
-  res.send("api/saved");
+router.get("/api", function (req, res) {
+  res.send("api");
 });
 
 // save to MongoDB
-router.post("/api/saved", function (req, res) {
-  res.render("index");
+router.post("/api", function (req, res) {
+  let saveArticle = req.body;
+  Article.create({
+    saveArticle
+  }, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send('Saved Article');
+    }
+  })
 });
 
 // delete database
-router.post("/api/saved", function (req, res) {
+router.post("/api", function (req, res) {
   res.render("index");
 });
 
