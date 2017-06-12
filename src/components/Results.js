@@ -48,6 +48,8 @@ class Results extends Component {
 
   render() {
     return (
+      <div className="container">
+        <h2>Search Results</h2>
       <ul className="list-group">
         {this.state.results.map(item => (
           <li key={item._id} className="list-group-item">
@@ -66,6 +68,7 @@ class Results extends Component {
           </li>
         ))}
       </ul>
+      </div>
     );
   };
 

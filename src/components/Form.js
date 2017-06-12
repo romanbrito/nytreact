@@ -124,6 +124,7 @@ class Form extends Component {
         {/*Show saved articles*/}
 
         <div className="row">
+          <h2>Saved Articles</h2>
 
           <ul className="list-group">
             {this.state.saved.map(item => (
