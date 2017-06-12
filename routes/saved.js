@@ -44,7 +44,14 @@ router.post("/api", function (req, res) {
 // delete database
 router.delete("/api", function (req, res) {
   console.log("delete route yes!!!");
-  Article.findByIdAndRemove(req.body.articleID);
+  Article.findByIdAndRemove(req.body.articleID, (err, offer) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("deleted article")
+      //res.redirect("/");
+    }
+  });
 });
 
 module.exports = router;

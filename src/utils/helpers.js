@@ -40,7 +40,7 @@ let helper = {
   },
   deleteArticle(articleID){
     console.log("helper delete " + articleID);
-    return axios.post('/api?_method=DELETE', articleID);
+    return axios.post('/api?_method=DELETE', {articleID});
   }
 };
 
