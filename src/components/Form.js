@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link, Route} from 'react-router-dom';
 
+
 import Results from './Results';
 import helpers from '../utils/helpers';
 
@@ -45,7 +46,7 @@ class Form extends Component {
   };
 
   // delete articles
-  deleteArticle = (articleID)=>{
+  deleteArticle = (articleID) => {
     console.log(articleID);
     helpers.deleteArticle(articleID);
   };
@@ -54,66 +55,68 @@ class Form extends Component {
   render() {
     return (
       <div className="container">
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <h4 className="">
-            <strong>Topic</strong>
-          </h4>
-          {/*
-           Note how each of the form elements has an id that matches the state.
-           This is not necessary but it is convenient.
-           Also note how each has an onChange event associated with our handleChange event.
-           */}
-          <input
-            value={this.state.topic}
-            type="text"
-            className="form-control"
-            id="topic"
-            onChange={this.handleChange('topic')}
-            required
-          />
 
-          <h4>
-            <strong>Start Date</strong>
-          </h4>
-          <input
-            value={this.state.startYear}
-            type="date"
-            className="form-control"
-            id="start-Year"
-            onChange={this.handleChange('startYear')}
-            required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-          />
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <h4 className="">
+                <strong>Topic</strong>
+              </h4>
+              {/*
+               Note how each of the form elements has an id that matches the state.
+               This is not necessary but it is convenient.
+               Also note how each has an onChange event associated with our handleChange event.
+               */}
+              <input
+                value={this.state.topic}
+                type="text"
+                className="form-control"
+                id="topic"
+                onChange={this.handleChange('topic')}
+                required
+              />
 
-          <h4>
-            <strong>End Date</strong>
-          </h4>
-          <input
-            value={this.state.endYear}
-            type="date"
-            className="form-control"
-            id="end-Year"
-            onChange={this.handleChange('endYear')}
-            required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-          />
-        </div>
-        <div>
-          <Link to="/results">
-            <button
-              className="btn btn-primary"
-              type="submit"
-            >
-              Submit
-            </button>
-          </Link>
+              <h4>
+                <strong>Start Date</strong>
+              </h4>
+              <input
+                value={this.state.startYear}
+                type="date"
+                className="form-control"
+                id="start-Year"
+                onChange={this.handleChange('startYear')}
+                required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+              />
 
-        </div>
-      </form>
+              <h4>
+                <strong>End Date</strong>
+              </h4>
+              <input
+                value={this.state.endYear}
+                type="date"
+                className="form-control"
+                id="end-Year"
+                onChange={this.handleChange('endYear')}
+                required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+              />
+            </div>
+            <div>
+              <Link to="/results">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </Link>
+
+            </div>
+          </form>
+
         {/*Results component*/}
 
         <Route path="/results" render={props => (
           <Results
-          searchTerm={this.state}
+            searchTerm={this.state}
           />
         )}/>
 
@@ -131,7 +134,9 @@ class Form extends Component {
                 <button
                   className="btn btn-danger"
                   type="button"
-                  onClick={() => {this.deleteArticle(item._id)}}
+                  onClick={() => {
+                    this.deleteArticle(item._id)
+                  }}
                 >
                   delete
                 </button>
@@ -143,8 +148,6 @@ class Form extends Component {
 
 
         </div>
-
-
 
 
       </div>

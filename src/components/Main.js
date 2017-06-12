@@ -1,5 +1,6 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+
+import {Jumbotron} from 'react-bootstrap';
 
 // could move to routes
 import Form from './Form';
@@ -8,31 +9,18 @@ import Form from './Form';
 const Main = () => {
   return (
     <div className="container">
-      <div className="row">
-        <div className="jumbotron">
-          <h2>New York Times Article Scrubber</h2>
-          <p>
-            <em>Search for and annotate articles of interest!</em>
-          </p>
-        </div>
-        <div className="col-md-12">
-          <div className="panel panel-default">
-            <div className="panel-heading">
-              <h3 className="panel-title text-center">Search</h3>
-            </div>
-            <div className="panel-body text-center">
-              {/*Form component*/}
-              <Form/>
 
-            </div>
-            <div className="col-md-6">
+      <Jumbotron>
+        <h1>New York Times Article Scrubber</h1>
+        <p>Search for and annotate articles of interest!</p>
+      </Jumbotron>
 
 
-            </div>
-          </div>
-        </div>
-      </div>
+      {/*Form component*/}
+      <Form/>
+
     </div>
+
   );
 };
 
