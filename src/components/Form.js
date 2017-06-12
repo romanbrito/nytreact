@@ -14,17 +14,7 @@ class Form extends Component {
     saved: []
   };
 
-  // The moment the page renders get the saved articles
-  componentDidMount() {
-    // Get saved articles.
-    helpers.getSaved().then((response) => {
-      console.log(response);
-      if (response !== this.state.saved) {
-        console.log('saved', response.data);
-        this.setState({saved: response.data});
-      }
-    }); //.bind(this)
-  }
+
 
   handleChange = (key) => {
     return (event) => {
@@ -45,11 +35,7 @@ class Form extends Component {
     console.log(this.state);
   };
 
-  // delete articles
-  deleteArticle = (articleID) => {
-    console.log(articleID);
-    helpers.deleteArticle(articleID);
-  };
+
 
 
   render() {
@@ -111,46 +97,6 @@ class Form extends Component {
 
             </div>
           </form>
-
-        {/*Results component*/}
-
-        <Route path="/results" render={props => (
-          <Results
-            searchTerm={this.state}
-          />
-        )}/>
-
-
-        {/*Show saved articles*/}
-
-        <div className="row">
-          <h2>Saved Articles</h2>
-
-          <ul className="list-group">
-            {this.state.saved.map(item => (
-              <li key={item._id} className="list-group-item">
-                {item.url}
-                <hr/>
-                {item.title}
-                <button
-                  className="btn btn-danger"
-                  type="button"
-                  onClick={() => {
-                    this.deleteArticle(item._id)
-                  }}
-                >
-                  delete
-                </button>
-                <hr/>
-                {item.date}
-              </li>
-            ))}
-          </ul>
-
-
-        </div>
-
-
       </div>
     );
   }
