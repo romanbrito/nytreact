@@ -28,6 +28,35 @@ class Main extends Component {
     }); //.bind(this)
   }
 
+
+  // This function allows childrens to update the parent.
+  // setTerm = (term) => {
+  //   this.setState({searchTerm: term});
+  // };
+  componentDidUpdate(){
+    // Get saved articles.
+    helpers.getSaved().then((response) => {
+      console.log(response);
+      if (response !== this.state.saved) {
+        console.log('saved', response.data);
+        this.setState({saved: response.data});
+      }
+    }); //.bind(this)
+  }
+
+  // delete articles
+  deleteArticle = (articleID) => {
+    console.log(articleID);
+    helpers.deleteArticle(articleID).then((response) => {
+      helpers.getSaved().then((response) => {
+        if (response !== this.state.saved) {
+        this.setState({saved: response.data});
+        }
+      })
+    })
+  };
+
+
   render() {
   return (
     <div className="container">
@@ -51,7 +80,7 @@ class Main extends Component {
 
 
       {/*Show saved articles*/}
-      <Saved savedArticles={this.state.saved}/>
+      <Saved savedArticles={this.state.saved} deletefunc={this.deleteArticle}/>
 
     </div>
 
