@@ -4,11 +4,11 @@ import helpers from '../utils/helpers';
 
 class Results extends Component {
 
-  state = {
-    results: [],
-    searchTerm: {},
-    article: {}
-  };
+  // state = {
+  //   results: [],
+  //   searchTerm: {},
+  //   article: {}
+  // };
 
   // componentDidUpdate() {
   //   helpers.postArticle(this.state.article)
@@ -21,24 +21,24 @@ class Results extends Component {
   // Note the syntax for setting the state
 
   // If the component changes (i.e. if a search is entered)...
-  componentDidMount() {
-    //if (prevState.searchTerm !== this.state.searchTerm) {
-      console.log('Updated');
-      console.log(this.props.searchTerm);
-
-      //var {topic, startYear, endYear} = this.props.searchTerm;
-
-
-      // Run query for the article
-      helpers.runQuery(this.props.searchTerm).then((data) => {
-        if (data !== this.state.results) {
-          this.setState({results: data});
-          console.log('Articles');
-          console.log(this.state.results);
-        }
-      })
-    //}
-  }
+  // componentDidMount() {
+  //   //if (prevState.searchTerm !== this.state.searchTerm) {
+  //     console.log('Updated');
+  //     console.log(this.props.searchTerm);
+  //
+  //     //var {topic, startYear, endYear} = this.props.searchTerm;
+  //
+  //
+  //     // Run query for the article
+  //     helpers.runQuery(this.props.searchTerm).then((data) => {
+  //       if (data !== this.state.results) {
+  //         this.setState({results: data});
+  //         console.log('Articles');
+  //         console.log(this.state.results);
+  //       }
+  //     })
+  //   //}
+  // }
 
   // save articles
   saveArticle = (info)=>{
@@ -51,7 +51,7 @@ class Results extends Component {
       <div className="container">
         <h2>Search Results</h2>
       <ul className="list-group">
-        {this.state.results.map(item => (
+        {this.props.results.map(item => (
           <li key={item._id} className="list-group-item">
             {item.web_url}
             <hr/>
@@ -59,7 +59,7 @@ class Results extends Component {
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => {this.saveArticle(item)}}
+              // onClick={() => {this.saveArticle(item)}}
             >
               Save
             </button>

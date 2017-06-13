@@ -8,7 +8,7 @@ class Saved extends Component {
     articleID:''
   };
 
-  handleDlete = (IDarticle) => {
+  handleDelete = (IDarticle) => {
     console.log(IDarticle);
 
   // Set the parent to have the search term
@@ -31,7 +31,7 @@ class Saved extends Component {
                 className="btn btn-danger"
                 type="button"
                 onClick={() => {
-                  this.handleDlete(item._id)
+                  this.handleDelete(item._id)
                 }}
               >
                 delete

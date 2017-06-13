@@ -6,6 +6,7 @@ import {Jumbotron} from 'react-bootstrap';
 // could move to routes
 import Form from './Form';
 import Saved from './Saved';
+import Results from './Results';
 
 import helpers from '../utils/helpers';
 
@@ -13,44 +14,55 @@ import helpers from '../utils/helpers';
 class Main extends Component {
 
   state = {
-    saved: []
+    saved: [],
+    searchTerm:{},
+    results: []
   };
 
   // The moment the page renders get the saved articles
   componentDidMount() {
     // Get saved articles.
     helpers.getSaved().then((response) => {
-      console.log(response);
+      //console.log(response);
       if (response !== this.state.saved) {
-        console.log('saved', response.data);
+        //console.log('saved', response.data);
         this.setState({saved: response.data});
       }
     }); //.bind(this)
   }
 
-
-  // This function allows childrens to update the parent.
-  // setTerm = (term) => {
-  //   this.setState({searchTerm: term});
-  // };
   componentDidUpdate(){
     // Get saved articles.
     helpers.getSaved().then((response) => {
-      console.log(response);
+      //console.log(response);
       if (response !== this.state.saved) {
-        console.log('saved', response.data);
+        //console.log('saved', response.data);
         this.setState({saved: response.data});
       }
     }); //.bind(this)
   }
+  // This function allows childrens to update the parent saved
+    // search articles in nyt articles
+   getArtTerm= (Term) => {
+    console.log(Term);
+     // Run query for the article
+     helpers.runQuery(Term).then((data) => {
+       if (data !== this.state.results) {
+         this.setState({results: data});
+         console.log('Articles');
+         console.log(this.state.results);
+       }
+     })
+  };
 
-  // delete articles
+  // This function allows childrens to update the parent saved
+  // search term
   deleteArticle = (articleID) => {
     console.log(articleID);
     helpers.deleteArticle(articleID).then((response) => {
       helpers.getSaved().then((response) => {
         if (response !== this.state.saved) {
-        this.setState({saved: response.data});
+          this.setState({saved: response.data});
         }
       })
     })
@@ -68,15 +80,13 @@ class Main extends Component {
 
 
       {/*Form component*/}
-      <Form/>
+      <Form getArtTerm={this.getArtTerm}/>
 
       {/*Results component*/}
 
-      <Route path="/results" render={props => (
         <Results
-          searchTerm={this.state}
+          results={this.state.results}
         />
-      )}/>
 
 
       {/*Show saved articles*/}

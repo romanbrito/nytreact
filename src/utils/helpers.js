@@ -4,6 +4,7 @@ const authKey = 'aab61f8cd4e7499e858933618e21cebd';
 
 let helper = {
   runQuery(articles) {
+    console.log('helper run query');
     console.log('run query topic ' + articles.topic);
     console.log('run query start ' + articles.startYear);
     console.log('run query end ' + articles.endYear);

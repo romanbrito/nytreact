@@ -10,8 +10,7 @@ class Form extends Component {
   state = {
     topic: '',
     startYear: '',
-    endYear: '',
-    saved: []
+    endYear: ''
   };
 
 
@@ -33,6 +32,7 @@ class Form extends Component {
 
     console.log('submit');
     console.log(this.state);
+    this.props.getArtTerm(this.state);
   };
 
 
@@ -86,14 +86,14 @@ class Form extends Component {
               />
             </div>
             <div>
-              <Link to="/results">
+
                 <button
                   className="btn btn-primary"
                   type="submit"
                 >
                   Submit
                 </button>
-              </Link>
+
 
             </div>
           </form>
