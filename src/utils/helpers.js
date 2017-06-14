@@ -40,8 +40,8 @@ let helper = {
     return axios.post('/api', data);
   },
   deleteArticle(articleID){
-    console.log("helper delete " + articleID);
     return axios.post('/api?_method=DELETE', {articleID});
+    console.log("helper delete " + articleID);
   }
 };
 

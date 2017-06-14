@@ -16,7 +16,8 @@ class Main extends Component {
   state = {
     saved: [],
     searchTerm:{},
-    results: []
+    results: [],
+    deleteArticleID:''
   };
 
   // The moment the page renders get the saved articles
@@ -31,16 +32,23 @@ class Main extends Component {
     }); //.bind(this)
   }
 
-  componentDidUpdate(){
-    // Get saved articles.
-    helpers.getSaved().then((response) => {
-      //console.log(response);
-      if (response !== this.state.saved) {
-        //console.log('saved', response.data);
-        this.setState({saved: response.data});
-      }
-    }); //.bind(this)
+  componentDidUpdate(prevProps, prevState) {
+    // this avoids continuous calling to api
+
+    if (prevState.saved.map((item) => item._id).join() !== this.state.saved.map((item) => item._id).join()) {
+      console.log(prevState.saved.map((item) => item._id).join() + " ---- " + this.state.saved.map((item) => item._id).join());
+      // Get saved articles.
+      helpers.getSaved().then((response) => {
+        console.log(response);
+        if (response !== this.state.saved) {
+          this.setState({saved: response.data});
+          console.log('saved', this.state.saved);
+        }
+      }); //.bind(this)
+    }
+
   }
+
   // This function allows childrens to update the parent saved
     // search articles in nyt articles
    getArtTerm= (Term) => {
@@ -58,14 +66,19 @@ class Main extends Component {
   // This function allows childrens to update the parent saved
   // search term
   deleteArticle = (articleID) => {
+
     console.log(articleID);
-    helpers.deleteArticle(articleID).then((response) => {
-      helpers.getSaved().then((response) => {
-        if (response !== this.state.saved) {
-          this.setState({saved: response.data});
-        }
-      })
+    helpers.deleteArticle(articleID);
+
+    helpers.getSaved().then((response) => {
+      if (response !== this.state.saved) {
+        this.setState({
+          saved: response.data
+        });
+        console.log("saved after delete " + this.state.saved)
+      }
     })
+
   };
 
 
