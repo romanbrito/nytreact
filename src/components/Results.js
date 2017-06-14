@@ -41,9 +41,11 @@ class Results extends Component {
   // }
 
   // save articles
-  saveArticle = (info)=>{
-    console.log(info);
-    helpers.postArticle(info);
+  saveArticle = (article)=>{
+    console.log(article);
+    helpers.postArticle(article);
+    // Set the parent to have the search term
+    this.props.savefunc(article._id);
   };
 
   render() {
@@ -59,7 +61,7 @@ class Results extends Component {
             <button
               className="btn btn-primary"
               type="button"
-              // onClick={() => {this.saveArticle(item)}}
+              onClick={() => {this.saveArticle(item)}}
             >
               Save
             </button>

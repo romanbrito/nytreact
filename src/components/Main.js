@@ -81,6 +81,20 @@ class Main extends Component {
 
   };
 
+  saveArticle = (articleID) => {
+
+    console.log(articleID);
+
+    helpers.getSaved().then((response) => {
+      if (response !== this.state.saved) {
+        this.setState({
+          saved: response.data
+        });
+        console.log("saved after saved " + this.state.saved)
+      }
+    })
+  };
+
 
   render() {
   return (
@@ -98,7 +112,7 @@ class Main extends Component {
       {/*Results component*/}
 
         <Results
-          results={this.state.results}
+          results={this.state.results} savefunc={this.saveArticle}
         />
 
 

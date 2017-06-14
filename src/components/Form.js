@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-import {Link, Route} from 'react-router-dom';
-
-
-import Results from './Results';
-import helpers from '../utils/helpers';
 
 class Form extends Component {
 
